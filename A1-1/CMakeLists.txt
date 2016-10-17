@@ -3,5 +3,5 @@ project(A1_1)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp Vec3f.cpp Vec3f.h)
+set(SOURCE_FILES main.cpp Vec3f.cpp Vec3f.h VecOP.cpp VecOP.h )
 add_executable(A1_1 ${SOURCE_FILES})

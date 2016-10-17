@@ -3,25 +3,25 @@
 //
 #include <array>
 
-#ifndef A1_1_VEC3F_H
-#define A1_1_VEC3F_H
+#pragma once
 
-namespace Vec3 {
+namespace my {
 
     class Vec3f {
-
-
     public:
         Vec3f();
         Vec3f(float x, float y, float z);
-        Vec3f(std::array<float,3> args);
+        Vec3f(std::array<float,3> &args);
         float x() const ;
         float y() const ;
         float z() const ;
+        using value_type = float;
+        static constexpr int dimension=3;
+        float operator[](std::size_t index) const;
+        float& operator[](std::size_t index) ;
     private:
-        std::array<float,3> mArgs;
+    //wenn const, wird bei overwirte [] float& abgelehnt 
+       std::array<float,3> mArgs;
     };
 }
 
-
-#endif //A1_1_VEC3F_H
