@@ -1,13 +1,13 @@
-#include <iostream>
-#include "test11.h"
+//#include <iostream>
 #include "Vec3f.h"
-#include "VecOP.h"
+//#include "VecOP.h"
+#include "test11.h"
 
 
 
 int main() {
    
-   using namespace my;
+  /* using namespace my;
     Vec3f a = Vec3f();
 
     std::cout << a.x() << std::endl;
@@ -36,7 +36,24 @@ int main() {
     std::cout << x << std::endl;
     a[1] = 5.6f;
     std::cout << a[1] << std::endl;
-   // test_Vec3f();
+    std::cout << (a==b) << std::endl;
+    std::cout << (a!=b) << std::endl;
+    a[0] =1;
+    a[1] =2;
+    a[2] =3;
+    std::cout << (a==b) << std::endl;
+    Vec3f d;
+    std::cout << d << std::endl;
+    Vec3f e=  d+a+b;
+    std::cout << d << std::endl;
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
+    std::cout << e << std::endl;
+     std::cout << -e << std::endl;*/
+
+
+
+    test_Vec3f();
     return 0;
 }
 
