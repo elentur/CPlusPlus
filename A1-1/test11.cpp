@@ -27,7 +27,7 @@ void test_Vec3f() {
         assert( sizeof(Vec3f) == 3*sizeof(float) );
         cout << "passed." << endl;
     }
-#if 0
+
     {
         cout << "  constructor & index operator: ";
         Vec3f a;
@@ -36,7 +36,7 @@ void test_Vec3f() {
         assert( b[0] == 1 && b[1] == 2 && b[2] == 3 );
         cout << "passed." << endl;
     }
-#endif
+
     {
         cout << "  read-only access to const object: ";
         const Vec3f a(1,2,3);
@@ -73,7 +73,7 @@ void test_Vec3f() {
         assert( a[0] == 4 && a[1] == 5 && a[2] == 6 );
         cout << "passed." << endl;
     }
-#if 0
+
     {
         cout << "  addition: ";
         Vec3f a(1,2,3), b(4,5,6);
@@ -90,14 +90,14 @@ void test_Vec3f() {
         assert( x == y );
         cout << "passed." << endl;
     }
-    
+
     {
         cout << "  unary minus: ";
         Vec3f a(1,2,3);
         assert( -a == Vec3f(-1,-2,-3) );
         cout << "passed." << endl;
     }
-    
+
     {
         cout << "  dot product: ";
         Vec3f a(1,2,3);
@@ -118,7 +118,7 @@ void test_Vec3f() {
         assert( dot(a,a) == 1*1+2*2+3*3 );
         cout << "passed." << endl;
     }
-#endif
+
     cout << "all Vec3f tests passed." << endl << endl;
 
 #endif // not NDEBUG
