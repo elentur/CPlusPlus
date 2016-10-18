@@ -49,6 +49,22 @@ namespace my {
     inline bool operator!= (const Vec3f& lhs, const Vec3f& rhs){
         return lhs[0] != rhs[0] || lhs[1] != rhs[1] || lhs[2] != rhs[2];
     }
+
+    Vec3f operator+ (const Vec3f& lhs, const Vec3f& rhs){
+        return Vec3f(
+                lhs[0] + rhs[0],
+                lhs[1] + rhs[1],
+                lhs[2] + rhs[2]
+        );
+    }
+
+    Vec3f operator+= (const Vec3f& rhs){
+        return Vec3f(
+                *this[0] + rhs[0],
+                *this[1] + rhs[1],
+                *this[2] + rhs[2]
+        );
+    }
 }
 
 
