@@ -17,12 +17,6 @@ namespace my {
 
         Vec3f(std::array<float, 3> args);
 
-        float x() const;
-
-        float y() const;
-
-        float z() const;
-
         using value_type = float;
 
         static constexpr int dimension = 3;
