@@ -61,5 +61,4 @@ namespace my {
 
 }
 
-
 #endif //A1_1_VEC3F_H
