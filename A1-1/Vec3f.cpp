@@ -15,18 +15,6 @@ my::Vec3f::Vec3f(float x, float y, float z) : mArgs(std::array<float, 3>{x, y, z
 my::Vec3f::Vec3f(std::array<float, 3> args) : mArgs(std::array<float, 3>{args.at(0), args.at(1), args.at(2)}) {
 }
 
-float my::Vec3f::x() const {
-    return mArgs[0];
-}
-
-float my::Vec3f::y() const {
-    return mArgs[1];
-}
-
-float my::Vec3f::z() const {
-    return mArgs[2];
-}
-
 bool my::operator==(const my::Vec3f &lhs, const my::Vec3f &rhs) {
     return lhs[0] == rhs[0] && lhs[1] == rhs[1] && lhs[2] == rhs[2];
 }
