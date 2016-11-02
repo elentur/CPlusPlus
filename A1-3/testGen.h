@@ -6,6 +6,8 @@
 using namespace std;
 
 #include "Vec.h"
+#include "Mat.h"
+#include "util.h"
 using namespace my;
 
 template<typename T, int N>
@@ -63,8 +65,9 @@ void test_VecGen()
     std::cout << a << std::endl;
     Mat<T,N> m3 = Mat<T,N>::entity();
     std::cout << (m3*a) << std::endl;
-    Mat<T,N> m4 = {{1,2,3},{4,5,6},{7,8,9}};
+    Mat<T,N> m4 = {{1.0f,2.0f,3.0f},{4.0f,5.0f,6.0f},{7.0f,8.000f,9.12345f}};
    // std::cout << (m4) << std::endl;
     std::cout << (m3*m4) << std::endl;
+    std::cout << to_string(m4) << std::endl;
 
 }
