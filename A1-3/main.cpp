@@ -10,7 +10,7 @@
 int main() {
 
     test_Vec();
-    test_Mat<float,3>();
+    test_Mat<float,8>();
     test_VecGen<float,3>();
     return 0;
 }
