@@ -8,7 +8,7 @@
 using namespace std;
 using namespace my;
 
-void test_VecGen() {
+void test_Mat() {
 #ifndef NDEBUG
     cout << "=================" << endl;
     cout << " Testing Mat<T,N>" << endl;

@@ -30,6 +30,7 @@ namespace my {
         /**
          * represent the number of dimensions of Mat
          */
+
         static constexpr int dimension = N;
 
         /**
