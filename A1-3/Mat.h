@@ -6,30 +6,34 @@
 
 #pragma once
 
-
 namespace my {
-/**
-       Represents a Matrix object with N * N dimensions and the valuetype T
-       overloaded operators are ==, != , *, unary -, << for toString usage and
-       the static method entity for the entity matrix.
-    */
+    /**
+     * Represents a Matrix object with N * N dimensions and the valuetype T
+     * overloaded operators are ==, != , *, unary -, << for toString usage and
+     * the static method entity for the entity matrix.
+     */
     template<typename T = float, int N = 3>
     class Mat {
     public:
+        // checks if the type T is a primitiv type.
+        static_assert(std::is_fundamental<T>::value, "The value type has to be a primitiv type!");
+        // checks if the N is is not <= 0.
+        static_assert(N > 0, "The dimension has to be bigger than 0!");
+
         Mat();
 
         Mat(std::initializer_list<my::Vec<T, N>> const &l);
         /**
-            represents the value typ of Mat<T,N>
-            */
+         * represents the value typ of Mat<T,N>
+        */
         using value_type = T;
         /**
-            represent the number of dimensions of Mat
-            */
+         * represent the number of dimensions of Mat
+         */
         static constexpr int dimension = N;
 
         /**
-            returns a entity matrix
+         * returns a entity matrix
         */
         static Mat<T, N> entity() {
             Mat<T, N> m;
@@ -40,8 +44,8 @@ namespace my {
         }
 
         /**
-            Overloading operator [] for reading purpose
-            */
+         * Overloading operator [] for reading purpose
+         */
         my::Vec<T, N> operator[](std::size_t index) const;
 
         /**
@@ -144,9 +148,17 @@ namespace my {
 // overloading the operator * for Mat<T,N> * Mat<T,N>
     template<typename T, int N>
     Mat<T, N> operator*(const Mat<T, N> &lhs, const Mat<T, N> &rhs) {
+
+        Mat<T, N> tilt;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                tilt[i][j] = lhs[j % N ][i];
+            }
+        }
+
         Mat<T, N> value;
         for (int i = 0; i < N; i++) {
-            value[i] = lhs * rhs[i];
+            value[i] = tilt * rhs[i];
         }
         return value;
     }

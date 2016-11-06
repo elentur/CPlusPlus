@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cassert>
 #include <algorithm>
+#include <stdlib.h>
 
 #pragma once
 
@@ -14,6 +15,11 @@ namespace my {
     template<typename T = float, int N = 3>
     class Vec {
     public:
+        // checks if the type T is a primitiv type.
+        static_assert(std::is_fundamental<T>::value, "The value type has to be a primitiv type!");
+        // checks if the N is is not <= 0.
+        static_assert(N > 0, "The dimension has to be bigger than 0!");
+
         Vec();
 
         Vec(std::initializer_list<T> const &l);
@@ -61,7 +67,7 @@ namespace my {
     template<typename T, int N>
     T Vec<T, N>::operator[](std::size_t index) const {
         if (index >= dimension) {
-            std::cout << "index out of bounds";
+            std::cerr << "index out of bounds";
             exit(0);
         }
         return mArgs[index];
@@ -71,7 +77,7 @@ namespace my {
     template<typename T, int N>
     T &Vec<T, N>::operator[](std::size_t index) {
         if (index >= dimension) {
-            std::cout << "index out of bounds";
+            std::cerr << "index out of bounds";
             exit(0);
         }
         return mArgs[index];
