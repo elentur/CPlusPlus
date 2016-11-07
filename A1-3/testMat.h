@@ -15,7 +15,7 @@ template<typename T, int N>
 Vec<T,N> genRandVec(){
     Vec<T,N> a;
     for(int i = 0; i<N;i++){
-        a[i] = T(rand());
+        a[i] = T(rand() % 100);
     }
 
     return a;
@@ -157,19 +157,19 @@ void test_Mat() {
     }
 
 
-    Mat<float, 3> mat3A{{1.0f,2.0f,3.0f},{4.0f,5.0f,6.0f},{7.0f,8.0f,9.0f}};
-    Mat<float, 3> mat3B{{1.0f,2.0f,3.0f},{4.0f,5.0f,6.0f},{7.0f,8.0f,9.0f}};
+    Mat<T, 3> mat3A{{T(1),T(2),T(3)},{T(4),T(5),T(6)},{T(7),T(8),T(9)}};
+    Mat<T, 3> mat3B{{T(1),T(2),T(3)},{T(4),T(5),T(6)},{T(7),T(8),T(9)}};
 
-    Vec<float,3> vecA = {1.0f,2.0f,3.0f};
+    Vec<T,3> vecA = {T(1),T(2),T(3)};
 
     {
         cout << "  Mat - Vec product: " << endl;
         cout << to_string(mat3A) << endl;
         cout << to_string(vecA) << endl;
         cout << " product = ";
-        Vec<float,3> pro = mat3A * vecA;
+        Vec<T,3> pro = mat3A * vecA;
         cout << to_string(pro) << endl;
-        assert( pro  == (Vec<float,3>{14.0f, 32.0f, 50.0f}));
+        assert( pro  == (Vec<T,3>{T(14), T(32), T(50)}));
         cout << "  passed." << endl;
     }
 
@@ -177,9 +177,9 @@ void test_Mat() {
         cout << "  Mat - Mat product: " << endl;
         cout << to_string(mat3A) << endl;
         cout << to_string(mat3B) << endl;
-        Mat<float,3> pro = mat3A * mat3B;
+        Mat<T,3> pro = mat3A * mat3B;
         cout << to_string(pro) << endl;
-        assert( pro  == (Mat<float,3>{{30.0f,36.0f,42.0f},{66.0f,81.0f,96.0f},{102.0f,126.0f,150.0f}}));
+        assert( pro  == (Mat<T,3>{{T(30),T(36),T(42)},{T(66),T(81),T(96)},{T(102),T(126),T(150)}}));
         cout << "  passed." << endl;
     }
 
@@ -199,8 +199,8 @@ void test_Mat() {
 
     {
         cout << "  width and decimal: " << endl;
-        cout << to_string(matA,0,0) << endl;
-        cout << to_string(matA,2,2) << endl;
+        cout << to_string(matA,3,0) << endl;
+        cout << to_string(matA,6,2) << endl;
         cout << to_string(matA,2,8) << endl;
         cout << to_string(matA,8,2) << endl;
         cout << "  passed?" << endl;

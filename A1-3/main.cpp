@@ -3,15 +3,13 @@
 //#include "VecOP.h"
 #include "test11.h"
 #include "testMat.h"
-#include "testGen.h"
 #include "Mat.h"
 
 
 int main() {
 
     test_Vec();
-    test_Mat<float,8>();
-    test_VecGen<float,3>();
+    test_Mat<float,4>();
     return 0;
 }
 

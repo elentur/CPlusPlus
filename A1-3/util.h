@@ -14,7 +14,7 @@
  * @return std::string
  */
 template<typename T, int N>
-std::string vek_to_string(my::Vec<T, N> v, int width = 1, int decimals = 0) {
+std::string vek_to_string(my::Vec<T, N> v, int width = 3, int decimals = 0) {
     std::ostringstream s;
     s << " |";
     for (int i = 0; i < N; i++) {
@@ -32,7 +32,7 @@ std::string vek_to_string(my::Vec<T, N> v, int width = 1, int decimals = 0) {
  * @return std::string
  */
 template<typename T, int N>
-std::string to_string(my::Mat<T, N> m, int width = 1, int decimals = 0) {
+std::string to_string(my::Mat<T, N> m, int width = 3, int decimals = 0) {
     std::ostringstream s;
 
     s << " Matrix(" << typeid(T).name() << " " << N << " * " << N << ") width: " << width << " decimals: " << decimals
@@ -53,7 +53,7 @@ std::string to_string(my::Mat<T, N> m, int width = 1, int decimals = 0) {
  * @return std::string
  */
 template<typename T, int N>
-std::string to_string(my::Vec<T, N> v, int width = 1, int decimals = 0) {
+std::string to_string(my::Vec<T, N> v, int width = 3, int decimals = 0) {
     std::ostringstream s;
 
     s << " Vector(" << typeid(T).name() << " " << N << ")" << " width: " << width << " decimals: " << decimals
