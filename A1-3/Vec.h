@@ -16,7 +16,7 @@ namespace my {
     class Vec {
     public:
         // checks if the type T is a primitiv type.
-        static_assert(std::is_fundamental<T>::value, "The value type has to be a primitiv type!");
+        static_assert(std::is_fundamental<T>::value, "The value type has to be a numeric type!");
         // checks if the N is is not <= 0.
         static_assert(N > 0, "The dimension has to be bigger than 0!");
 
