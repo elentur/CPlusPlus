@@ -8,7 +8,7 @@
 
 int main() {
    
-/*   using namespace my;
+  using namespace my;
     Vec<float,3> a{1,2,3};
   std::cout << a[0] << std::endl;
   std::cout << a << std::endl;
@@ -41,12 +41,12 @@ int main() {
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     std::cout << e << std::endl;
-     std::cout << -e << std::endl;*/
+     std::cout << -e << std::endl;
 
 
 
-    test_Vec();
-    test_VecGen<int,5>();
+    //test_Vec();
+   // test_VecGen<int,5>();
     return 0;
 }
 
