@@ -92,7 +92,7 @@ void vector<T>::push_back(const T &value)
 {
     if (nfi_ >= capacity_)
         increase_size();
-    new (data_) value;
+    new (data_+nfi_) T(value);// new erlaubt als separaten Paramerter eine speicheradresse
 }
 
 template <typename T>
