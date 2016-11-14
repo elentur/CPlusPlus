@@ -156,7 +156,6 @@ T &vector<T>::at(std::size_t index)
     {
        throw std::out_of_range( "Index out of range." );
     }
-    std::cout << "danach" << std::endl;
     return data_[index];
 }
 }
