@@ -25,6 +25,7 @@ namespace my {
         T operator[](std::size_t index) const;
         T &operator[](std::size_t index);
         T at(size_t) const;
+        T &at(size_t);
         void expand();
         void contract();
 
@@ -104,12 +105,10 @@ namespace my {
     template<typename T>
     void vector<T>::contract() {
 
-        T *copy = new T[size_ - 1];
+        T *copy = new T[--size_];
         for (size_t i = 0; i < size_;i++){
             copy[i] = data_[i];
         }
-
-        size_--;
 
         delete[] data_;
         data_ = copy;
@@ -129,6 +128,12 @@ namespace my {
     T vector<T>::at(size_t index) const{
         if(index > size_ || index > nfi) throw std::out_of_range( "Index out of range." );
         return  data_[index];
+    }
+
+    template <typename T>
+    T &vector<T>::at(std::size_t index) {
+        if (index >= size_ || index < 0) throw std::out_of_range( "Index out of range." );
+        return data_[index];
     }
 
     template<typename T>
