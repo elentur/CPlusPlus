@@ -25,7 +25,6 @@ void test_21()
             assert(v1.size() == 3);
             assert(Payload::count() == v1.size());
         }
-        cout << Payload::count() << endl;
         // are the elements destroyed?
         assert(Payload::count() == 0);
         cout << " done." << endl;
@@ -43,9 +42,6 @@ void test_21()
             v.push_back(Payload(2,2,2));
             assert(v.size() == 3);
             assert(!v.empty());
-
-            cout << Payload::count() << endl;
-
             assert(Payload::count() == 3);
 
             assert(v.pop_back() == Payload(2,2,2));

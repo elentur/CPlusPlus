@@ -2,6 +2,7 @@
 #define PAYLOAD_H
 
 #include <memory>
+#include <ostream>
 
 class Payload {
 
@@ -24,6 +25,8 @@ public:
 
     // tell count
     static size_t count() { return count_; }
+
+    friend std::ostream &operator<<(std::ostream &os, const Payload &payload);
 
 private:
     static size_t count_;

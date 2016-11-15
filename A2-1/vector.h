@@ -26,6 +26,7 @@ namespace my {
         T &operator[](std::size_t index);
         T at(size_t) const;
         void expand();
+        void contract();
 
         vector(vector<T> const &) = delete;
         vector<T>& operator=(vector<T> const &) = delete;
@@ -80,18 +81,38 @@ namespace my {
 
     template<typename T>
     void vector<T>::expand() {
-        T copy = new T[size_*1.5];
-        for (int i = 0; i < size_;i++){
+
+        T *copy = new T[size_ + 1];
+        for (size_t i = 0; i < size_;i++){
             copy[i] = data_[i];
         }
 
+        size_++;
+
+        delete[] data_;
         data_ = copy;
-        delete[] copy;
     }
 
     template<typename T>
     T vector<T>::pop_back() {
-        return data_[nfi--];
+        if (size_ <= 0) throw std::out_of_range( "Index out of range." );
+        T elm = data_[--nfi];
+        contract();
+        return elm;
+    }
+
+    template<typename T>
+    void vector<T>::contract() {
+
+        T *copy = new T[size_ - 1];
+        for (size_t i = 0; i < size_;i++){
+            copy[i] = data_[i];
+        }
+
+        size_--;
+
+        delete[] data_;
+        data_ = copy;
     }
 
     template<typename T>
