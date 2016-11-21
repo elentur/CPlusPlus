@@ -76,8 +76,11 @@ std::size_t vector<T>::size() const
 template <typename T>
 void vector<T>::reserve(size_t n)
 {
+    
    data_ =  static_cast<T*>(malloc(sizeof(T)*n));
+   
    capacity_=n;
+   
 }
 template <typename T>
 void vector<T>::clear()

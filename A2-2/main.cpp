@@ -4,10 +4,11 @@
 #include <iostream>
 #include "my_vector.h"
 #include "payload.h"
+#include <cassert>
 
 using namespace std;
 
-void test_21();
+//void test_21();
 
 
 int main()
@@ -21,10 +22,12 @@ int main()
     cout << "End of tests ----------------------------" << endl;
 
 
-    my::vector<double> v;
+    my::vector<Payload> v;
     v.reserve(1);
-    v.push_back(10.1);
+    std::cout << "Hallo";
+    //v.push_back(Payload(-1,-1,-1));
+   // assert(Payload::count() == 1);
   //  v.at(1) =10.2;
-    std::cout <<v[0];
+   // std::cout <<v[0];
     return 0;
 }
