@@ -40,6 +40,7 @@ int main()
      Payload p2 = Payload(std::move(p));
      std::cout << "p2: " << p2 << std::endl;
      std::cout << "p: " << p << std::endl;
+     
     std::cout << "PCount: " << Payload::count()<< std::endl;
 
      std::cout <<Payload::count() <<std::endl;

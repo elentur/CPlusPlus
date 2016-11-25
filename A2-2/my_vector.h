@@ -107,10 +107,16 @@ template <typename T>
 void vector<T>::increase_size()
 {
     T* x = (T*)malloc(capacity_ * 2);
-    new(x) T;
-    for (int i = 0; i < capacity_; i++) x[i].~T();
-    free(x);
+    
+    for (size_t i = 0; i < capacity_; i++){
+           new(x+(i)) T(std::move(data_[i]));
+           std::cout << "data: " << data_[i] << std::endl;
+         //  data_[i].~T();
+        }
+        data_ =x;
+       // free(x);
     capacity_ = capacity_ * 2;
+    
 }
 
 template <typename T>
