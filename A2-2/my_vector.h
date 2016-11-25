@@ -61,7 +61,7 @@ vector<T>::vector(size_t size, T &value) : data_(new T[size])
 template <typename T>
 vector<T>::~vector()
 {
-    delete[] data_;
+    delete data_;
 }
 template <typename T>
 bool vector<T>::empty() const
@@ -85,7 +85,7 @@ void vector<T>::reserve(size_t n)
 template <typename T>
 void vector<T>::clear()
 {
-    delete[] data_;
+    delete data_;
     data_(new T[0]);
     nfi_ = 0;
     size_ = 0;
@@ -95,30 +95,30 @@ void vector<T>::push_back(const T &value)
 {
     if (nfi_ >= capacity_)
         increase_size();
-    new (data_+nfi_) T(value);// new erlaubt als separaten Paramerter eine speicheradresse
+    new (data_+(nfi_++)) T(value);
+    // new erlaubt als separaten Paramerter eine speicheradresse
 }
 
 template <typename T>
 void vector<T>::increase_size()
 {
-    T *new_data = new T[size_ + 1];
-    for (size_t i = 0; i < size_; i++)
-    {
-        new_data[i] = data_[i];
-    }
-    size_++;
+    T* temp = data_;
+    reserve(size_t(capacity_*1.5));
+    new(data_) T(std::move(*temp));
+    
+    temp->~T();
+    free(temp);
 
-    delete[] data_;
-    data_ = new_data;
 }
 
 template <typename T>
 T vector<T>::pop_back()
 {
-    if (size_ <= 0)
+    if (nfi_<= 0)
         return NULL;
-    T r = data_[--nfi_];
-    reduce_size();
+    T r = Payload(data_[--nfi_]);
+
+   // reduce_size();
     return r;
 }
 template <typename T>
