@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/roberto/Documents/WS16/CPlusPlus/A2-2/main.cpp
+iostream
+-
+my_vector.h
+/home/roberto/Documents/WS16/CPlusPlus/A2-2/my_vector.h
+payload.h
+/home/roberto/Documents/WS16/CPlusPlus/A2-2/payload.h
+cassert
+-
+
+/home/roberto/Documents/WS16/CPlusPlus/A2-2/my_vector.h
+array
+-
+iostream
+-
+stdexcept
+-
+stdlib.h
+-
+malloc.h
+-
+payload.h
+/home/roberto/Documents/WS16/CPlusPlus/A2-2/payload.h
+
+/home/roberto/Documents/WS16/CPlusPlus/A2-2/payload.cpp
+payload.h
+/home/roberto/Documents/WS16/CPlusPlus/A2-2/payload.h
+
+/home/roberto/Documents/WS16/CPlusPlus/A2-2/payload.h
+memory
+-
+iostream
+-
+

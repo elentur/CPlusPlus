@@ -3,6 +3,10 @@
 #include <array>
 #include <iostream>
 #include <stdexcept>
+#include <stdlib.h>
+#include <malloc.h>
+#include "payload.h"
+
 namespace my
 {
 template <typename T = float>
@@ -36,12 +40,13 @@ class vector
     T &at(std::size_t index);
 
   private:
-    void vector<T>::increase_size();
-    void vector<T>::reduce_size();
+    void reduce_size();
     T *data_;
     size_t nfi_ = 0;
     size_t size_ = 0;
     size_t capacity_ = 0;
+
+    void increase_size();
 };
 template <typename T>
 vector<T>::vector()
@@ -76,7 +81,6 @@ std::size_t vector<T>::size() const
 template <typename T>
 void vector<T>::reserve(size_t n)
 {
-    
    data_ =  static_cast<T*>(malloc(sizeof(T)*n));
    
    capacity_=n;
@@ -102,13 +106,11 @@ void vector<T>::push_back(const T &value)
 template <typename T>
 void vector<T>::increase_size()
 {
-    T* temp = data_;
-    reserve(size_t(capacity_*1.5));
-    new(data_) T(std::move(*temp));
-    
-    temp->~T();
-    free(temp);
-
+    T* x = (T*)malloc(capacity_ * 2);
+    new(x) T;
+    for (int i = 0; i < capacity_; i++) x[i].~T();
+    free(x);
+    capacity_ = capacity_ * 2;
 }
 
 template <typename T>
