@@ -24,6 +24,7 @@ class vector
     std::size_t capacity() const;
     void reserve(size_t n);
     void clear();
+    void shrink_to_fit();
     void push_back(const T &value);
     T pop_back();
     /**
@@ -42,7 +43,6 @@ class vector
   private:
     void reduce_size();
     T *data_;
-    size_t nfi_ = 0;
     size_t size_ = 0;
     size_t capacity_ = 0;
 
@@ -66,12 +66,16 @@ vector<T>::vector(size_t size, T &value) : data_(new T[size])
 template <typename T>
 vector<T>::~vector()
 {
-    delete data_;
+    for (size_t i = 0; i < size_; i++)
+    {
+       (data_ + i)->~T();
+    }
+    free(data_);
 }
 template <typename T>
 bool vector<T>::empty() const
 {
-    return nfi_ == 0;
+    return size_ == 0;
 }
 template <typename T>
 std::size_t vector<T>::size() const
@@ -79,67 +83,67 @@ std::size_t vector<T>::size() const
     return size_;
 }
 template <typename T>
+std::size_t vector<T>::capacity() const
+{
+    return capacity_;
+}
+template <typename T>
 void vector<T>::reserve(size_t n)
 {
-   data_ =  static_cast<T*>(malloc(sizeof(T)*n));
-   
-   capacity_=n;
-   
+    data_ = static_cast<T *>(malloc(sizeof(T) * n));
+
+    capacity_ = n;
 }
 template <typename T>
 void vector<T>::clear()
 {
     delete data_;
     data_(new T[0]);
-    nfi_ = 0;
     size_ = 0;
 }
 template <typename T>
 void vector<T>::push_back(const T &value)
 {
-    if (nfi_ >= capacity_)
-        increase_size();
-    new (data_+(nfi_++)) T(value);
-    // new erlaubt als separaten Paramerter eine speicheradresse
+    //if there is space in the array
+    if (size_ != capacity_)
+    {
+        new ((void *)(data_ + size_++)) T(value);
+        return;
+    }
+    //if there is no more space
+    capacity_ = capacity_ ? (size_t)ceil(capacity_ * 1.5) : 1;
+    T *temp = data_;
+    reserve(capacity_);
+    //copy old data & delete old memory
+    for (size_t i = 0; i < size_; i++)
+    {
+        new ((void *)(data_ + i)) T(std::move(*(temp + i)));
+    }
+    //add new data 
+    new ((void *)(data_ + size_)) T(value);
+    free(temp);
+    size_++;
 }
-
-template <typename T>
-void vector<T>::increase_size()
-{
-    T* x = (T*)malloc(capacity_ * 2);
-    
-    for (size_t i = 0; i < capacity_; i++){
-           new(x+(i)) T(std::move(data_[i]));
-           std::cout << "data: " << data_[i] << std::endl;
-         //  data_[i].~T();
-        }
-        data_ =x;
-       // free(x);
-    capacity_ = capacity_ * 2;
-    
-}
-
 template <typename T>
 T vector<T>::pop_back()
 {
-    if (nfi_<= 0)
-        return NULL;
-    T r = Payload(data_[--nfi_]);
-
-   // reduce_size();
+    if (size_ <= 0)return NULL;
+    T r = T(data_[--size_]);
     return r;
 }
 template <typename T>
-void vector<T>::reduce_size()
-{
-    T *new_data = new T[--size_];
+void vector<T>::shrink_to_fit(){
+     //if there is no space in the array
+    if (size_ == capacity_)return;
+    //if there is space
+    T *temp = data_;
+    reserve(size_);
+    //copy old data and delete old memory
     for (size_t i = 0; i < size_; i++)
     {
-        new_data[i] = data_[i];
+        new ((void *)(data_ + i)) T(std::move(*(temp + i)));
     }
-
-    delete[] data_;
-    data_ = new_data;
+    free(temp);
 }
 /**
         Overloading operator [] for reading purpose
@@ -159,12 +163,12 @@ T &vector<T>::operator[](std::size_t index)
 }
 
 template <typename T>
-T vector<T>::at(std::size_t index) const 
+T vector<T>::at(std::size_t index) const
 {
 
     if (index >= capacity_ || index < 0)
     {
-       throw std::out_of_range( "Index out of range." );
+        throw std::out_of_range("Index out of range.");
     }
     return data_[index];
 }
@@ -174,7 +178,7 @@ T &vector<T>::at(std::size_t index)
 {
     if (index >= capacity_ || index < 0)
     {
-       throw std::out_of_range( "Index out of range." );
+        throw std::out_of_range("Index out of range.");
     }
     return data_[index];
 }

@@ -13,13 +13,14 @@ public:
     // constructors
     Payload(float xx=0, float yy=0, float zz=0) : x(xx), y(yy), z(zz) { count_++; }
     Payload(const Payload& rhs) : x(rhs.x), y(rhs.y), z(rhs.z) { count_++; }
-    Payload( Payload&& rhs) { 
-     swap(*this,rhs);
+    Payload( Payload&& rhs) : x(NULL)
+            , y(NULL), z(NULL) { 
+     rhs.swap(*this);
     }
-    void swap(Payload& lhs, Payload& rhs){
-        Payload temp = lhs;
-        lhs= rhs;
-        rhs= temp;
+    void swap( Payload& rhs){
+        std::swap(x,  rhs.x);
+        std::swap(y, rhs.y);
+        std::swap(z, rhs.z);
      }
 
     // destructor

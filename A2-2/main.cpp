@@ -40,7 +40,7 @@ int main()
      Payload p2 = Payload(std::move(p));
      std::cout << "p2: " << p2 << std::endl;
      std::cout << "p: " << p << std::endl;
-     
+
     std::cout << "PCount: " << Payload::count()<< std::endl;
 
      std::cout <<Payload::count() <<std::endl;
@@ -48,5 +48,12 @@ int main()
     std::cout <<v[0] <<std::endl;
 
     std::cout <<v[1] <<std::endl;
+    v.reserve(100);
+    std::cout <<"Size: "<< v.size() <<std::endl;
+    std::cout <<"Capacity: "<< v.capacity() <<std::endl;
+     v.shrink_to_fit();
+    std::cout <<"Size: "<< v.size() <<std::endl;
+    std::cout <<"Capacity: "<< v.capacity() <<std::endl;
+    
     return 0;
 }
