@@ -85,13 +85,19 @@ namespace my {
         }
         //if there is no more space
         capacity_ = capacity_ ? (size_t) capacity_ * 2 : 1;
+
         T *temp = data_;
         reserve(capacity_);
+
+
+
         //copy old data & delete old memory
         for (size_t i = 0; i < size_; i++)
         {
             new ((void *)(data_ + i)) T(std::move(*(temp + i)));
+
         }
+
         //add new data
         new ((void *)(data_ + size_)) T(element);
         free(temp);
