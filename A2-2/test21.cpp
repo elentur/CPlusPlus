@@ -22,6 +22,7 @@ void test_21()
         {
             // are the elements created?
             vector<Payload> v1(3, Payload(-1,-1,-1));
+            cout << v1.size() << endl;
             assert(v1.size() == 3);
             assert(Payload::count() == v1.size());
         }

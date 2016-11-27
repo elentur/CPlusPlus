@@ -36,6 +36,8 @@ namespace my {
         vector(vector<T> const &) = delete;
         vector<T>& operator=(vector<T> const &) = delete;
 
+        operator bool() const { return data_ != nullptr; }
+
     private:
         T *data_;
         size_t size_ = 0;
@@ -43,7 +45,7 @@ namespace my {
     };
 
     template<typename T>
-    vector<T>::vector() : data_(new T[0]) { }
+    vector<T>::vector() : data_(nullptr) { }
 
     template<typename T>
     vector<T>::vector(size_t const &size) : data_(new T[size]){
@@ -69,7 +71,7 @@ namespace my {
     template<typename T>
     void vector<T>::clear() {
         delete data_;
-        data_(new T[0]);
+        data_ = nullptr;
         size_ = 0;
     }
 

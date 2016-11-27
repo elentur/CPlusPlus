@@ -5,11 +5,9 @@
 #include <ostream>
 
 class Payload {
-
-public:
     // data
     float x, y, z;
-
+public:
     // ctor
     Payload(float xx=0, float yy=0, float zz=0) : x(xx), y(yy), z(zz) { count_++; }
 
@@ -26,8 +24,15 @@ public:
     }
     // move assignment
     Payload& operator=(Payload&& rhs){
-        std::swap(*this,rhs);
+        Payload temp(std::move(*this));
+        swap(*this,rhs);
         return *this;
+    }
+
+    friend void swap(Payload& lhs, Payload& rhs) {
+        std::swap(lhs.x,rhs.x);
+        std::swap(lhs.y,rhs.y);
+        std::swap(lhs.z,rhs.z);
     }
 
     // destructor
