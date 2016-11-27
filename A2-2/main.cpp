@@ -107,17 +107,12 @@ int main()
 
         cout << "Pop back a empty Paylaod form vector" << endl;
         // TODO soll das so? sollte ein 0 Payload zurückgegeben werden?
-        Payload empty = v.pop_back();
-        cout << empty << endl;
-        cout << Payload::count() << endl;
 
-        assert(empty == Payload(0,0,0));
+        assert(v.pop_back());
 
         assert(Payload::count() == 2);
         assert(v.size() == 0);
         assert(v.capacity() == 1);
-
-        delete *empty;
 
         cout << "Ok" << endl;
 

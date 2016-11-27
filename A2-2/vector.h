@@ -112,7 +112,7 @@ namespace my {
     template <typename T>
     T vector<T>::pop_back()
     {
-        if (size_ <= 0)return NULL;
+        if (size_ <= 0)return nullptr;
         T r = T(data_[--size_]);
         return r;
     }
