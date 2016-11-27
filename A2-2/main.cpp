@@ -27,7 +27,7 @@ int main()
         cout << "Start of tests (2.2)----------------------------" << endl;
 
         my::vector<Payload> v;
-        if(v)
+        if (v)
             cout << "ERROR: default-constructed my::vector points to something." << endl;
         else
             cout << "Default-constructed my::vector points to nothing." << endl;
@@ -54,6 +54,7 @@ int main()
         assert(Payload::count() == 1);
         assert(v.size() == 1);
         assert(v.capacity() == 1);
+        assert(!v.empty());
 
         cout << "Ok" << endl;
 
@@ -67,67 +68,97 @@ int main()
         cout << "Ok" << endl;
 
         cout << "Can we clear the vector?" << endl;
-
-        // de-referencing using "->"
+        // de-referencing
         assert(!v.empty());
         v.clear();
         assert(v.empty());
 
         cout << "Ok" << endl;
-/*
-        // const-ness
-        const uptr<string> coptr(new string("I AM CONST, DO NOT TOUCH ME"));
-        assert(coptr);
-        assert(!coptr->empty());
-        cout << "const ptr to: " << *coptr << " - size()=" << coptr->size() << endl;
 
-        // make function like std::make_unique()
-        auto p = uptr<string>::make();
-        (*p) += "Hello, World";
 
-        // make function with variadic arguments
-        auto q = uptr<string>::make("Hello variadic template world!");
-        cout << "make() with args: " << *q << endl;*/
+        cout << "Reserving memory for vector with 100 without initialisation Payload" << endl;
+
+        v.reserve(100);
+        assert(Payload::count() == 0);
+        assert(v.size() == 0);
+        assert(v.capacity() == 100);
+
+        cout << "Ok" << endl;
+
+        cout << "Add 1 Payload and shrink_to_fit from 100 to 1 " << endl;
+
+        v.push_back(Payload(1, 1, 1));
+        v.shrink_to_fit();
+        assert(Payload::count() == 1);
+        assert(v.size() == 1);
+        assert(v.capacity() == 1);
+
+        cout << "Ok" << endl;
+
+        cout << "Pop back a Paylaod form vector" << endl;
+
+        Payload a = v.pop_back();
+        assert(a == Payload(1, 1, 1));
+        assert(Payload::count() == 1);
+        assert(v.size() == 0);
+        assert(v.capacity() == 1);
+
+        cout << "Ok" << endl;
+
+        cout << "Pop back a empty Paylaod form vector" << endl;
+        // TODO soll das so? sollte ein 0 Payload zurückgegeben werden?
+        Payload empty = v.pop_back();
+        cout << empty << endl;
+        cout << Payload::count() << endl;
+
+        assert(empty == Payload(0,0,0));
+
+        assert(Payload::count() == 2);
+        assert(v.size() == 0);
+        assert(v.capacity() == 1);
+
+        delete *empty;
+
+        cout << "Ok" << endl;
+
+
+        cout << "Moving r-value into vector - counts one up" << endl;
+        v.clear();
+        v.push_back(std::move(Payload(2, 2, 2)));
+        assert(Payload::count() == 1);
+        assert(v.size() == 1);
+        assert(v.capacity() == 1);
+
+        cout << "Ok" << endl;
+
+        cout << "Moving l-value into vector - counts one up" << endl;
+        v.clear();
+        Payload payload = Payload(2, 2, 2);
+        v.push_back(std::move(payload));
+        assert(Payload::count() == 1);
+        assert(v.size() == 1);
+        assert(v.capacity() == 1);
+
+        cout << "Ok" << endl;
+
+        cout << "Copy Payload a into c - keeps count the same" << endl;
+
+        Payload b = a;
+        assert(Payload::count() == 2);
+
+        cout << "Ok" << endl;
+
+        cout << "Moving Payload a into b" << endl;
+
+        Payload c = std::move(a);
+        assert(Payload::count() == 2);
+
+        cout << "Ok" << endl;
+
+
+
 
         cout << "End of tests ----------------------------" << endl;
-
-        /*
-         * // what do we want to do with uptr<>?
-    uptr<string> ptr;
-    if(ptr)
-        cout << "ERROR: default-constructed uptr points to something." << endl;
-    else
-        cout << "OK: default-constructed uptr points to nothing." << endl;
-    assert(!ptr);
-
-    // take over a newly created resource
-    ptr = uptr<string>(new string("Hello unique pointer!"));
-    assert(ptr);
-
-    // de-referencing
-    cout << "now points to: " << *ptr << endl;
-    (*ptr) += " Hello World";
-    cout << "now points to: " << *ptr << endl;
-
-    // de-referencing using "->"
-    assert(!ptr->empty());
-    ptr->clear();
-    assert(ptr->empty());
-
-    // const-ness
-    const uptr<string> coptr(new string("I AM CONST, DO NOT TOUCH ME"));
-    assert(coptr);
-    assert(!coptr->empty());
-    cout << "const ptr to: " << *coptr << " - size()=" << coptr->size() << endl;
-
-    // make function like std::make_unique()
-    auto p = uptr<string>::make();
-    (*p) += "Hello, World";
-
-    // make function with variadic arguments
-    auto q = uptr<string>::make("Hello variadic template world!");
-    cout << "make() with args: " << *q << endl;*/
-
 
     }
 

@@ -7,6 +7,7 @@
 
 #include <array>
 #include <malloc.h>
+#include "payload.h"
 
 
 namespace my {
@@ -70,7 +71,13 @@ namespace my {
 
     template<typename T>
     void vector<T>::clear() {
-        delete data_;
+
+        for (size_t i = 0; i < size_; i++)
+        {
+            (data_ + i)->~T();
+        }
+
+        free(data_);
         data_ = nullptr;
         size_ = 0;
     }
@@ -88,8 +95,6 @@ namespace my {
 
         T *temp = data_;
         reserve(capacity_);
-
-
 
         //copy old data & delete old memory
         for (size_t i = 0; i < size_; i++)

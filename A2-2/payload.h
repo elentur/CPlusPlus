@@ -14,7 +14,7 @@ public:
     // copy-ctor
     Payload(const Payload& rhs) : x(rhs.x), y(rhs.y), z(rhs.z) { count_++; }
     // move-ctor
-    Payload( Payload&& rhs) : x(0), y(0), z(0) { std::swap(*this,rhs); }
+    Payload( Payload&& rhs) : x(NULL), y(NULL), z(NULL) { swap(*this,rhs); }
     // copy assignment - keeps count the same
     Payload& operator=(const Payload& rhs) {
         if(this != &rhs) {
@@ -42,13 +42,49 @@ public:
     bool operator==(const Payload& rhs) const { return x==rhs.x && y==rhs.y && z==rhs.z; }
 
     // tell count
-    static size_t count() { return count_; }
+    static size_t count() {  return count_; }
 
     friend std::ostream &operator<<(std::ostream &os, const Payload &payload);
 private:
     static size_t count_;
 
 };
+
+/*class Payload {
+
+public:
+    // data
+    float x, y, z;
+
+    // constructors
+    Payload(float xx=0, float yy=0, float zz=0) : x(xx), y(yy), z(zz) { count_++; }
+    Payload(const Payload& rhs) : x(rhs.x), y(rhs.y), z(rhs.z) { count_++; }
+    Payload( Payload&& rhs) : x(NULL) , y(NULL), z(NULL) {
+        rhs.swap(*this);
+    }
+    void swap( Payload& rhs){
+        std::swap(x, rhs.x);
+        std::swap(y, rhs.y);
+        std::swap(z, rhs.z);
+    }
+
+    // destructor
+    ~Payload()  { count_--; }
+
+    // assignment - keeps count the same
+    Payload& operator=( Payload rhs) { x=rhs.x; y=rhs.y; z=rhs.z; return *this; }
+    // comparison
+    bool operator==(const Payload& rhs) const {
+        return x==rhs.x && y==rhs.y && z==rhs.z; }
+
+    // tell count
+    static size_t count() { return count_; }
+private:
+    static size_t count_;
+
+};*/
+
+
 
 
 #endif // PAYLOAD_H
