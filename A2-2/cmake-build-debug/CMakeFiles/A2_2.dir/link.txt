@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -g   CMakeFiles/A2_2.dir/main.cpp.o CMakeFiles/A2_2.dir/payload.cpp.o  -o A2_2 

@@ -8,21 +8,17 @@
 
 using namespace std;
 
-//void test_21();
-
+void test_22();
 
 int main()
 {
-    cout << "Starting tests (2.1) --------------------" << endl;
-    //test_21();
 
-    // cout << "Starting tests (2.2) --------------------" << endl;
-    // test22();
+    cout << "Starting tests (2.2) --------------------" << endl;
+    test_22();
 
     cout << "End of tests ----------------------------" << endl;
 
-
-    my::vector<Payload> v;
+    /*  my::vector<Payload> v;
     v.reserve(1);
 //std::cout << Payload::count() << std::endl;
 //std::cout << v.size() << std::endl;
@@ -54,6 +50,16 @@ int main()
      v.shrink_to_fit();
     std::cout <<"Size: "<< v.size() <<std::endl;
     std::cout <<"Capacity: "<< v.capacity() <<std::endl;
-    
+
+    std::cout << "PCount: " << Payload::count()<< std::endl;
+    std::cout << "v[0]: " << v[0]<< std::endl;
+    my::vector<Payload> v1 = v;
+std::cout << "PCount: " << Payload::count()<< std::endl;
+std::cout << "v[0]: " << v[0]<< std::endl;
+my::vector<Payload> v2 = std::move(v);
+std::cout << "PCount: " << Payload::count()<< std::endl;
+std::cout << "v[0]: " << v[0]<< std::endl;
+
+*/
     return 0;
 }

@@ -16,9 +16,11 @@ class vector
     vector();
     vector(size_t size);
     vector(size_t size, T &value);
-    vector(vector<T> const &) = delete;
-    vector<T> &operator=(vector<T> const &) = delete;
+    vector(const vector &rhs);
+    vector(vector &&rhs);
     ~vector();
+    vector<T> &operator=(vector<T> rhs);
+    void swap(vector<T> &lhs, vector<T> &rhs);
     bool empty() const;
     std::size_t size() const;
     std::size_t capacity() const;
@@ -41,34 +43,53 @@ class vector
     T &at(std::size_t index);
 
   private:
-    void reduce_size();
     T *data_;
     size_t size_ = 0;
     size_t capacity_ = 0;
-
-    void increase_size();
 };
+
 template <typename T>
-vector<T>::vector()
+void vector<T>::swap(vector<T> &lhs, vector<T> &rhs)
+{
+    std::swap(lhs.data_, rhs.data_);
+    std::swap(lhs.size_, rhs.size_);
+    std::swap(lhs.capacity_, rhs.capacity_);
+}
+template <typename T>
+vector<T>::vector() : data_(nullptr)
 {
 }
 template <typename T>
-vector<T>::vector(size_t size) : data_(new T[size])
+vector<T>::vector(size_t size)
 {
-    size_ = size;
+    reserve(size);
 }
 template <typename T>
-vector<T>::vector(size_t size, T &value) : data_(new T[size])
+vector<T>::vector(size_t size, T &value)
 {
-    size_ = size;
+    reserve(size);
     push_back(value);
+}
+template <typename T>
+vector<T>::vector(const vector<T> &rhs) : size_(rhs.size_), capacity_(rhs.capacity_)
+{
+    data_ = static_cast<T *>(malloc(sizeof(T) * capacity_));
+    for (size_t i = 0; i < size_; i++)
+    {
+        new (data_ + i) T(*(rhs.data_ + i));
+    }
+}
+template <typename T>
+vector<T>::vector(vector<T> &&rhs) : vector<T>()
+{
+    swap(*this, rhs);
 }
 template <typename T>
 vector<T>::~vector()
 {
     for (size_t i = 0; i < size_; i++)
     {
-       (data_ + i)->~T();
+        (data_ + i)->~T();
     }
     free(data_);
 }
@@ -90,15 +111,23 @@ std::size_t vector<T>::capacity() const
 template <typename T>
 void vector<T>::reserve(size_t n)
 {
+    T *temp = data_;
     data_ = static_cast<T *>(malloc(sizeof(T) * n));
-
     capacity_ = n;
+    for (size_t i = 0; i < size_; i++)
+    {
+        new (data_ + i) T(std::move(*(temp + i)));
+    }
 }
 template <typename T>
 void vector<T>::clear()
 {
-    delete data_;
-    data_(new T[0]);
+    for (size_t i = 0; i < size_; i++)
+    {
+        (data_ + i)->~T();
+    }
+    free(data_);
+    data_ = nullptr;
     size_ = 0;
 }
 template <typename T>
@@ -107,43 +136,36 @@ void vector<T>::push_back(const T &value)
     //if there is space in the array
     if (size_ != capacity_)
     {
-        new ((void *)(data_ + size_++)) T(value);
+        new (data_+ size_++) T(value);
         return;
     }
-    //if there is no more space
-    capacity_ = capacity_ ? (size_t)ceil(capacity_ * 1.5) : 1;
-    T *temp = data_;
-    reserve(capacity_);
-    //copy old data & delete old memory
-    for (size_t i = 0; i < size_; i++)
-    {
-        new ((void *)(data_ + i)) T(std::move(*(temp + i)));
-    }
-    //add new data 
-    new ((void *)(data_ + size_)) T(value);
-    free(temp);
+    reserve(capacity_ ? (size_t)ceil(capacity_ * 1.5) : 1);
+    //add new data
+    new (data_ + size_) T(value);
     size_++;
 }
 template <typename T>
 T vector<T>::pop_back()
 {
-    if (size_ <= 0)return NULL;
+    if (size_ <= 0)
+        throw std::out_of_range("Index out of range.");
     T r = T(data_[--size_]);
     return r;
 }
 template <typename T>
-void vector<T>::shrink_to_fit(){
-     //if there is no space in the array
-    if (size_ == capacity_)return;
+void vector<T>::shrink_to_fit()
+{
+    //if there is no space in the array
+    if (size_ == capacity_)
+        return;
     //if there is space
-    T *temp = data_;
     reserve(size_);
-    //copy old data and delete old memory
-    for (size_t i = 0; i < size_; i++)
-    {
-        new ((void *)(data_ + i)) T(std::move(*(temp + i)));
-    }
-    free(temp);
+}
+template <typename T>
+vector<T> &vector<T>::operator=(vector<T> rhs)
+{
+    swap(*this, rhs);
+    return *this;
 }
 /**
         Overloading operator [] for reading purpose
