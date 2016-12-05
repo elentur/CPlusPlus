@@ -16,7 +16,7 @@ void test_21();
 int main()
 {
     //cout << "Starting tests (2.1) --------------------" << endl;
-    //test_21();
+    test_21();
 
     //cout << "Starting tests (2.2) --------------------" << endl;
     //test22();
@@ -32,6 +32,7 @@ int main()
         else
             cout << "Default-constructed my::vector points to nothing." << endl;
         assert(!v);
+        cout << Payload::count() << endl;
         assert(Payload::count() == 0);
         assert(v.size() == 0);
         assert(v.capacity() == 0);
@@ -98,6 +99,7 @@ int main()
         cout << "Pop back a Paylaod form vector" << endl;
 
         Payload a = v.pop_back();
+        cout << Payload::count() << endl;
         assert(a == Payload(1, 1, 1));
         assert(Payload::count() == 1);
         assert(v.size() == 0);
@@ -108,7 +110,11 @@ int main()
         cout << "Pop back a empty Paylaod form vector" << endl;
         // TODO soll das so? sollte ein 0 Payload zurückgegeben werden?
 
-        assert(v.pop_back());
+        Payload p = v.pop_back();
+
+        cout << p << endl;
+
+        //assert(p);
 
         assert(Payload::count() == 2);
         assert(v.size() == 0);
@@ -143,9 +149,12 @@ int main()
 
         cout << "Ok" << endl;
 
-        cout << "Moving Payload a into b" << endl;
+        cout << "Moving Payload a into c" << endl;
 
         Payload c = std::move(a);
+
+        cout << a << endl;
+
         assert(Payload::count() == 2);
 
         cout << "Ok" << endl;

@@ -48,24 +48,13 @@ RM = /home/roberto/CLion/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/roberto/Documents/WS16/CPlusPlus/A2-2
+CMAKE_SOURCE_DIR = /home/roberto/Documents/WS16/CPlusPlus/A3-1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/roberto/Documents/WS16/CPlusPlus/A2-2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/roberto/Documents/WS16/CPlusPlus/A3-1/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/roberto/CLion/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -78,11 +67,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/roberto/CLion/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/WS16/CPlusPlus/A2-2/cmake-build-debug/CMakeFiles /home/roberto/Documents/WS16/CPlusPlus/A2-2/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/WS16/CPlusPlus/A3-1/cmake-build-debug/CMakeFiles /home/roberto/Documents/WS16/CPlusPlus/A3-1/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/WS16/CPlusPlus/A2-2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/WS16/CPlusPlus/A3-1/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_it
+# Target rules for targets named demo
 
 # Build rule for target.
-test_it: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_it
-.PHONY : test_it
+demo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 demo
+.PHONY : demo
 
 # fast build rule for target.
-test_it/fast:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/build
-.PHONY : test_it/fast
+demo/fast:
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
+.PHONY : demo/fast
 
 main.o: main.cpp.o
 
@@ -129,7 +129,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -138,7 +138,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -147,62 +147,8 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.s
 .PHONY : main.cpp.s
-
-payload.o: payload.cpp.o
-
-.PHONY : payload.o
-
-# target to build an object file
-payload.cpp.o:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/payload.cpp.o
-.PHONY : payload.cpp.o
-
-payload.i: payload.cpp.i
-
-.PHONY : payload.i
-
-# target to preprocess a source file
-payload.cpp.i:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/payload.cpp.i
-.PHONY : payload.cpp.i
-
-payload.s: payload.cpp.s
-
-.PHONY : payload.s
-
-# target to generate assembly for a file
-payload.cpp.s:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/payload.cpp.s
-.PHONY : payload.cpp.s
-
-test21.o: test21.cpp.o
-
-.PHONY : test21.o
-
-# target to build an object file
-test21.cpp.o:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/test21.cpp.o
-.PHONY : test21.cpp.o
-
-test21.i: test21.cpp.i
-
-.PHONY : test21.i
-
-# target to preprocess a source file
-test21.cpp.i:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/test21.cpp.i
-.PHONY : test21.cpp.i
-
-test21.s: test21.cpp.s
-
-.PHONY : test21.s
-
-# target to generate assembly for a file
-test21.cpp.s:
-	$(MAKE) -f CMakeFiles/test_it.dir/build.make CMakeFiles/test_it.dir/test21.cpp.s
-.PHONY : test21.cpp.s
 
 # Help Target
 help:
@@ -210,18 +156,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... test_it"
+	@echo "... rebuild_cache"
+	@echo "... demo"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... payload.o"
-	@echo "... payload.i"
-	@echo "... payload.s"
-	@echo "... test21.o"
-	@echo "... test21.i"
-	@echo "... test21.s"
 .PHONY : help
 
 
