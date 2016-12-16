@@ -84,7 +84,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/Application.h">
+			<Option target="demo"/>
+		</Unit>
 		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/main.cpp">
+			<Option target="demo"/>
+		</Unit>
+		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/window.h">
 			<Option target="demo"/>
 		</Unit>
 		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/CMakeLists.txt">
