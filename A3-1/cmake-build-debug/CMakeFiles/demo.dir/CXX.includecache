@@ -6,9 +6,17 @@
 
 #IncludeRegexTransform: 
 
+/home/roberto/Documents/WS16/CPlusPlus/A3-1/Application.h
+SDL2/SDL.h
+-
+stdlib.h
+-
+
 /home/roberto/Documents/WS16/CPlusPlus/A3-1/main.cpp
 SDL2/SDL.h
 -
 iostream
 -
+Application.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-1/Application.h
 

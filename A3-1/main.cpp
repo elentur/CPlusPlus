@@ -1,7 +1,7 @@
-
-
 #include <SDL2/SDL.h>
 #include <iostream>
+#include "Application.h"
+
 
 using namespace std;
 
@@ -12,9 +12,10 @@ int main()
    
    try
    {
-      SDL_Init(SDL_INIT_VIDEO );
-      cout << "Welcome to SDL World...." << endl;
-      SDL_Quit();
+      my::Application app;
+
+      app.run();
+      return 0;
    }
 
    catch ( std::runtime_error const& e )

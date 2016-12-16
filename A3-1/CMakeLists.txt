@@ -13,10 +13,10 @@ endif()
 
 
 # which sources to parse (only .cpp, no .h)
-set(sources main.cpp)
+set(sources main.cpp Application.h window.h)
 
 add_executable        ( demo ${sources} )
-target_link_libraries ( demo LINK_PUBLIC sdl2 )
+target_link_libraries ( demo LINK_PUBLIC SDL2 )
 
 if (WIN32)
    target_include_directories( demo PUBLIC ../SDL2-2.0.5/ )      # customize your path here
