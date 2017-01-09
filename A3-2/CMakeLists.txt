@@ -13,7 +13,7 @@ endif()
 
 
 # which sources to parse (only .cpp, no .h)
-set(sources main.cpp Application.h Window.h Surface.h)
+set(sources main.cpp Application.h Window.h Surface.h Widget.h Button.h)
 
 add_executable        ( demo ${sources} )
 target_link_libraries ( demo LINK_PUBLIC SDL2 )

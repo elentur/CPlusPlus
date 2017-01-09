@@ -7,34 +7,76 @@
 
 #include <SDL2/SDL.h>
 #include <stdlib.h>
+#include <thread>
+#include <list>
+#include "Window.h"
 
 namespace my {
     class Application {
-
     public:
         Application();
         ~Application();
         void run();
+        void addWindow();
 
     private:
-
-        SDL_Event Events;
+        bool Running = true;
     };
 
     Application::Application() {
-        if((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO)==-1)) {
-            printf("Could not initialize SDL: %s.\n", SDL_GetError());
-            exit(-1);
+        try
+        {
+            SDL_Init(SDL_INIT_EVERYTHING);
+        }
+
+        catch (std::runtime_error const &e)
+        {
+            std::cerr << "Caught exception on initializing Application: " << e.what() << std::endl;
         }
     }
 
-    Application::~Application() {  SDL_Quit(); }
+    Application::~Application() {SDL_Quit();}
 
     void Application::run() {
-        while (SDL_PollEvent(&Events))
+        SDL_Event Event;
+        while (Running)
         {
-            if (Events.type == SDL_QUIT) break;
+            SDL_PollEvent(&Event);
+
+            SDL_Window* window = 0;
+            Window* winptr = 0;
+
+            switch (Event.type)
+            {
+                case SDL_WINDOWEVENT:
+                    // CODE IN QUESTION
+                    window = SDL_GetWindowFromID(Event.window.windowID);
+
+                    switch(Event.window.event)
+                    {
+                        case SDL_WINDOWEVENT_CLOSE:
+                            SDL_DestroyWindow(window);
+                            break;
+                        case SDL_WINDOWEVENT_EXPOSED:
+                            //
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+
+                case SDL_QUIT:
+                    SDL_DestroyWindow(window);
+                    Running = false;
+                    break;
+                default:
+                    break;
+            }
         }
+    }
+
+    void Application::addWindow() {
+
     }
 }
 

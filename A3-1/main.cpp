@@ -1,5 +1,4 @@
 #include <SDL2/SDL.h>
-#include <iostream>
 #include "Application.h"
 
 
@@ -7,19 +6,17 @@ using namespace std;
 
 #undef main
 
-int main()
-{
-   
-   try
-   {
-      my::Application app;
+int main() {
+    my::Application app;
 
-      app.run();
-      return 0;
-   }
+    my::Window win("Mein Window", 640, 480);
+    win.draw(my::Surface("/home/roberto/Documents/WS16/CPlusPlus/A3-1/robot.bmp"));
+    win.set_pos(50,50);
+    win.update();
 
-   catch ( std::runtime_error const& e )
-   {
-      std::cerr << "Caught exception: " << e.what() << std::endl;
-   }
+    my::Window win2("Mein nächstes Window", 640, 480);
+
+
+    app.run();
+    return 0;
 }

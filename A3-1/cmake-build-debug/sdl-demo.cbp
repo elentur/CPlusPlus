@@ -87,10 +87,13 @@
 		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/Application.h">
 			<Option target="demo"/>
 		</Unit>
-		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/main.cpp">
+		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/Surface.h">
 			<Option target="demo"/>
 		</Unit>
-		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/window.h">
+		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/Window.h">
+			<Option target="demo"/>
+		</Unit>
+		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/main.cpp">
 			<Option target="demo"/>
 		</Unit>
 		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-1/CMakeLists.txt">
