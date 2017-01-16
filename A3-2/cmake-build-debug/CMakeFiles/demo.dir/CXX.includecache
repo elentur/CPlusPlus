@@ -58,6 +58,14 @@ stdlib.h
 Surface.h
 /home/roberto/Documents/WS16/CPlusPlus/A3-2/Surface.h
 
+/home/roberto/Documents/WS16/CPlusPlus/A3-2/figther.cpp
+vector
+-
+iostream
+-
+memory
+-
+
 /home/roberto/Documents/WS16/CPlusPlus/A3-2/main.cpp
 SDL2/SDL.h
 -

@@ -99,6 +99,9 @@
 		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-2/Window.h">
 			<Option target="demo"/>
 		</Unit>
+		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-2/figther.cpp">
+			<Option target="demo"/>
+		</Unit>
 		<Unit filename="/home/roberto/Documents/WS16/CPlusPlus/A3-2/main.cpp">
 			<Option target="demo"/>
 		</Unit>

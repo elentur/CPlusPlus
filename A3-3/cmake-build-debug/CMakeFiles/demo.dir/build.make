@@ -43,10 +43,10 @@ RM = /home/roberto/CLion/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/roberto/Documents/WS16/CPlusPlus/A3-2
+CMAKE_SOURCE_DIR = /home/roberto/Documents/WS16/CPlusPlus/A3-3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/roberto/Documents/WS16/CPlusPlus/A3-2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/demo.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/demo.dir/flags.make
 
 CMakeFiles/demo.dir/main.cpp.o: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roberto/Documents/WS16/CPlusPlus/A3-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/main.cpp.o -c /home/roberto/Documents/WS16/CPlusPlus/A3-2/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/main.cpp.o -c /home/roberto/Documents/WS16/CPlusPlus/A3-3/main.cpp
 
 CMakeFiles/demo.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roberto/Documents/WS16/CPlusPlus/A3-2/main.cpp > CMakeFiles/demo.dir/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roberto/Documents/WS16/CPlusPlus/A3-3/main.cpp > CMakeFiles/demo.dir/main.cpp.i
 
 CMakeFiles/demo.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roberto/Documents/WS16/CPlusPlus/A3-2/main.cpp -o CMakeFiles/demo.dir/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roberto/Documents/WS16/CPlusPlus/A3-3/main.cpp -o CMakeFiles/demo.dir/main.cpp.s
 
 CMakeFiles/demo.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/demo.dir/main.cpp.o.provides.build: CMakeFiles/demo.dir/main.cpp.o
 
 CMakeFiles/demo.dir/figther.cpp.o: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/figther.cpp.o: ../figther.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roberto/Documents/WS16/CPlusPlus/A3-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/demo.dir/figther.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/figther.cpp.o -c /home/roberto/Documents/WS16/CPlusPlus/A3-2/figther.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/demo.dir/figther.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/demo.dir/figther.cpp.o -c /home/roberto/Documents/WS16/CPlusPlus/A3-3/figther.cpp
 
 CMakeFiles/demo.dir/figther.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/figther.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roberto/Documents/WS16/CPlusPlus/A3-2/figther.cpp > CMakeFiles/demo.dir/figther.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roberto/Documents/WS16/CPlusPlus/A3-3/figther.cpp > CMakeFiles/demo.dir/figther.cpp.i
 
 CMakeFiles/demo.dir/figther.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/figther.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roberto/Documents/WS16/CPlusPlus/A3-2/figther.cpp -o CMakeFiles/demo.dir/figther.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roberto/Documents/WS16/CPlusPlus/A3-3/figther.cpp -o CMakeFiles/demo.dir/figther.cpp.s
 
 CMakeFiles/demo.dir/figther.cpp.o.requires:
 
@@ -117,7 +117,7 @@ demo: CMakeFiles/demo.dir/main.cpp.o
 demo: CMakeFiles/demo.dir/figther.cpp.o
 demo: CMakeFiles/demo.dir/build.make
 demo: CMakeFiles/demo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/roberto/Documents/WS16/CPlusPlus/A3-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable demo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable demo"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/demo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -135,6 +135,6 @@ CMakeFiles/demo.dir/clean:
 .PHONY : CMakeFiles/demo.dir/clean
 
 CMakeFiles/demo.dir/depend:
-	cd /home/roberto/Documents/WS16/CPlusPlus/A3-2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/roberto/Documents/WS16/CPlusPlus/A3-2 /home/roberto/Documents/WS16/CPlusPlus/A3-2 /home/roberto/Documents/WS16/CPlusPlus/A3-2/cmake-build-debug /home/roberto/Documents/WS16/CPlusPlus/A3-2/cmake-build-debug /home/roberto/Documents/WS16/CPlusPlus/A3-2/cmake-build-debug/CMakeFiles/demo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/roberto/Documents/WS16/CPlusPlus/A3-3 /home/roberto/Documents/WS16/CPlusPlus/A3-3 /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles/demo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/demo.dir/depend
 
