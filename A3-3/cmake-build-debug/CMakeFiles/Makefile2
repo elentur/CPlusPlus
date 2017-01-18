@@ -60,39 +60,39 @@ CMAKE_SOURCE_DIR = /home/roberto/Documents/WS16/CPlusPlus/A3-3
 CMAKE_BINARY_DIR = /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/demo.dir
+# Target rules for target CMakeFiles/A3-3.dir
 
 # All Build rule for target.
-CMakeFiles/demo.dir/all:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/depend
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target demo"
-.PHONY : CMakeFiles/demo.dir/all
+CMakeFiles/A3-3.dir/all:
+	$(MAKE) -f CMakeFiles/A3-3.dir/build.make CMakeFiles/A3-3.dir/depend
+	$(MAKE) -f CMakeFiles/A3-3.dir/build.make CMakeFiles/A3-3.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target A3-3"
+.PHONY : CMakeFiles/A3-3.dir/all
 
 # Include target in all.
-all: CMakeFiles/demo.dir/all
+all: CMakeFiles/A3-3.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/demo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/demo.dir/all
+CMakeFiles/A3-3.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/A3-3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/demo.dir/rule
+.PHONY : CMakeFiles/A3-3.dir/rule
 
 # Convenience name for target.
-demo: CMakeFiles/demo.dir/rule
+A3-3: CMakeFiles/A3-3.dir/rule
 
-.PHONY : demo
-
-# clean rule for target.
-CMakeFiles/demo.dir/clean:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/clean
-.PHONY : CMakeFiles/demo.dir/clean
+.PHONY : A3-3
 
 # clean rule for target.
-clean: CMakeFiles/demo.dir/clean
+CMakeFiles/A3-3.dir/clean:
+	$(MAKE) -f CMakeFiles/A3-3.dir/build.make CMakeFiles/A3-3.dir/clean
+.PHONY : CMakeFiles/A3-3.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/A3-3.dir/clean
 
 .PHONY : clean
 

@@ -2,8 +2,8 @@
 // Created by roberto on 09.01.17.
 //
 
-#ifndef SDL_DEMO_BUTTON_H
-#define SDL_DEMO_BUTTON_H
+#ifndef SDL_DEMO_IMGBUTTON_H
+#define SDL_DEMO_IMGBUTTON_H
 
 #include <glob.h>
 #include <iostream>
@@ -12,13 +12,18 @@
 #include "Surface.h"
 
 namespace my {
-    class Button {
+    class ImgButton {
     public:
-        Button(size_t width, size_t heigth);
+        ImgButton(string path, size_t width, size_t heigth);
 
-        ~Button();
+        ~ImgButton();
 
         void fill(Uint8 r, Uint8 g, Uint8 b);
+
+        my::Surface * surNormal;
+        my::Surface * surHover;
+        my::Surface * surClicked;
+        mutable my::Surface * surCurrent;
 
         bool isOver = false;
         mutable bool isClicked = false;
@@ -28,28 +33,41 @@ namespace my {
         std::vector<Uint8> colorOver = {100, 100, 100};
         std::vector<Uint8> colorClick = {255, 0, 0};
 
+        mutable char * _suffix = (char *) "_normal.bmp";
+
+        std::function<void()> callBack =[]{};
+
+        template<typename T>
+        void onClick(T c);
+
+
     };
 
-    Button::Button(size_t width, size_t heigth) {
+    ImgButton::ImgButton(string path, size_t width, size_t heigth) : surNormal(new my::Surface(path +  "_normal.bmp")), surHover(new my::Surface(path +  "_hover.bmp")), surClicked(new my::Surface(path +  "_clicked.bmp")) , surCurrent(surNormal) {
         offset.w = width;
         offset.h = heigth;
     }
 
-    Button::~Button() {
+    ImgButton::~ImgButton() {
 
     }
 
-    void Button::fill(Uint8 r, Uint8 g, Uint8 b) {
+    void ImgButton::fill(Uint8 r, Uint8 g, Uint8 b) {
         color[0] = r;
         color[1] = g;
         color[2] = b;
     }
 
-    void setPosition(Button const &button, SDL_Rect const &offset) {
+    template<typename T>
+    void ImgButton::onClick(T c) {
+        callBack = c;
+    }
+
+    void setPosition(ImgButton const &button, SDL_Rect const &offset) {
         button.offset = offset;
     }
 
-    void handleEvent(Button const &button, SDL_Event &e) {
+    void handleEvent(ImgButton const &button, SDL_Event &e) {
 
         if (e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP) {
 
@@ -77,23 +95,24 @@ namespace my {
 
             if( !inside )
             {
-                button.color = button.colorNormal;
+                button.surCurrent = button.surNormal;
             }else
             {
 
-                if(!button.isClicked)button.color = button.colorOver;
+                if(!button.isClicked)button.surCurrent = button.surHover;
                 //Set mouse over sprite
                 switch( e.type )
                 {
 
                     case SDL_MOUSEBUTTONDOWN:
                         button.isClicked = true;
-                        button.color = button.colorClick;
+                        button.surCurrent = button.surClicked;
                         break;
 
                     case SDL_MOUSEBUTTONUP:
+                        if(button.isClicked)button.callBack();
                         button.isClicked = false;
-                        button.color = button.colorOver;
+                        button.surCurrent = button.surHover;
                         break;
                     default:
 
@@ -103,23 +122,14 @@ namespace my {
         }
     }
 
-    void draw(Button const &button, my::Surface const &sur) {
-
-        my::Surface sur1(button.offset.w, button.offset.h);
-        sur1.fill(
-                button.color[0],
-                button.color[1],
-                button.color[2],
-                255
-        );
-
-        sur1.blit(sur.surface,&button.offset);
+    void draw(ImgButton const &button, my::Surface const &sur) {
+        button.surCurrent->blit(sur.surface,&button.offset);
     }
 
-    SDL_Rect getPosition(Button const &button){
+    SDL_Rect getPosition(ImgButton const &button){
         return button.offset;
     }
 }
 
 
-#endif //SDL_DEMO_BUTTON_H
+#endif //SDL_DEMO_IMGBUTTON_H

@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.2)
-project(sdl-demo)
+project(A3-3)
 
 # options for the C++ compiler 
 set(CMAKE_CXX_STANDARD 14)
@@ -13,13 +13,13 @@ endif()
 
 
 # which sources to parse (only .cpp, no .h)
-set(sources main.cpp Application.h Window.h Surface.h Widget.h Button.h figther.cpp)
+set(sources main.cpp Application.h Window.h Surface.h Widget.h Button.h ImgButton.h Tile.h Canvas.h)
 
-add_executable        ( demo ${sources} )
-target_link_libraries ( demo LINK_PUBLIC SDL2 )
+add_executable        ( A3-3 ${sources} )
+target_link_libraries ( A3-3 LINK_PUBLIC SDL2 )
 
 if (WIN32)
-   target_include_directories( demo PUBLIC ../SDL2-2.0.5/ )      # customize your path here
-   target_link_libraries ( demo LINK_PUBLIC sdl2 kernel32 user32 Wldap32 shell32
+   target_include_directories( A3-3 PUBLIC ../SDL2-2.0.5/ )      # customize your path here
+   target_link_libraries ( A3-3 LINK_PUBLIC sdl2 kernel32 user32 Wldap32 shell32
                                                  winmm imm32 ole32 oleaut32 gdi32 Version )
 endif()

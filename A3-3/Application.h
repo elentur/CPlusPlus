@@ -12,9 +12,15 @@
 #include <vector>
 #include "Window.h"
 #include "Widget.h"
-#include "Button.h"
+#include "ImgButton.h"
+#include "Canvas.h"
+#include "Tile.h"
 
 namespace my {
+
+    void showOffset(SDL_Rect &offset) {
+        std::cout << offset.x << ":" << offset.y << ":" << offset.w << ":" << offset.h << std::endl;
+    }
 
     //Screen dimension constants
     const int SCREEN_WIDTH = 640;
@@ -25,52 +31,7 @@ namespace my {
     const int BUTTON_WIDTH = 50;
     const int BUTTON_HEIGHT = 50;
 
-    using Canvas = std::vector<my::Widget>;
-
-    void makeRaster(Canvas canvas, int GAP, int WIDTH, SDL_Rect offset) {
-
-
-        std::cout << offset.x << std::endl;
-        std::cout << offset.y << std::endl;
-
-        int counterX = 0;
-        int counterY = 0;
-        int width = 0;
-        int heigth = 0;
-        int currentHeigth = 0;
-
-        for (const auto &e : canvas) {
-
-
-            SDL_Rect rect;
-
-            SDL_Rect size = getPosition(e);
-
-            rect.x = width + offset.x;
-            rect.y = heigth + offset.y;
-            rect.w = size.w;
-            rect.h = size.h;
-
-            width += size.w + GAP;
-
-            currentHeigth = (size.h + GAP > currentHeigth) ? size.h + GAP : currentHeigth;
-
-            if (rect.x + rect.w >= WIDTH) {
-                counterX = 0;
-                counterY++;
-                width = 0;
-                heigth += currentHeigth;
-            }
-
-
-            std::cout << rect.x << ":" << rect.y << std::endl;
-
-            setPosition(e, rect);
-
-            counterX++;
-        }
-    }
-
+    int stroke_strength = 10;
 
     class Application {
     public:
@@ -85,7 +46,7 @@ namespace my {
     private:
         bool Running = true;
 
-        Canvas drawCanvas();
+        Canvas buildCanvas();
     };
 
     Application::Application() {
@@ -102,28 +63,24 @@ namespace my {
 
     void Application::run() {
 
-        Canvas canvas = drawCanvas();
-
-        Canvas canvas1 = drawCanvas();
-
-        canvas.push_back(move(canvas1));
-
-        SDL_Event Event;
+        Canvas canvas = buildCanvas();
 
         my::Window win("Mein Window", SCREEN_WIDTH, SCREEN_HEIGHT);
 
+        SDL_Event Event;
         SDL_Rect rect;
 
         rect.x = 0;
         rect.y = 0;
 
+        makeRaster(canvas, canvas.gap, SCREEN_WIDTH, rect);
 
-        makeRaster(canvas, 10, SCREEN_WIDTH, rect);
+        my::Surface sur(SCREEN_WIDTH, SCREEN_HEIGHT);
 
         while (Running) {
 
-            my::Surface sur(SCREEN_WIDTH, SCREEN_HEIGHT);
             sur.fill(255, 255, 255, 255);
+
             draw(canvas, sur);
 
             win.draw(sur);
@@ -159,52 +116,66 @@ namespace my {
         }
     }
 
-    Canvas Application::drawCanvas() {
+    Canvas Application::buildCanvas() {
 
-        Canvas canvas;
+        Canvas main(SCREEN_WIDTH, SCREEN_HEIGHT, 100, 100, 100);
 
-        canvas.push_back(Button(90, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 80));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
-        canvas.push_back(Button(50, 50));
+        Canvas menu(50, SCREEN_HEIGHT, 180, 180, 180);
 
-        return canvas;
-    }
+        ImgButton undo("defaultButton", 50, 50);
+        undo.onClick([] {
+            std::cout << "Undo" << std::endl;
+        });
 
-    void setPosition(Canvas const &canvas, SDL_Rect const &o) {
-        makeRaster(canvas, BUTTON_CAP, SCREEN_WIDTH, o);
-    }
+        menu.v.push_back(move(undo));
 
-    void draw(Canvas const &canvas, my::Surface const &sur) {
+        ImgButton clear("defaultButton", 50, 50);
 
-        for (const auto &e : canvas) {
-            draw(e,sur);
+        menu.v.push_back(move(clear));
+
+
+        ImgButton plus("defaultButton", 50, 50);
+
+        int a = 0;
+
+        plus.onClick([&stroke_strength]() mutable {
+            if(stroke_strength < 20) stroke_strength++;
+            std::cout << stroke_strength << std::endl;
+        });
+
+        menu.v.push_back(move(plus));
+
+
+        ImgButton minus("defaultButton", 50, 50);
+
+        minus.onClick([&stroke_strength]() mutable {
+            if(stroke_strength > 1) stroke_strength--;
+            std::cout << stroke_strength << std::endl;
+        });
+
+        menu.v.push_back(move(minus));
+
+        Canvas canvas(SCREEN_WIDTH, SCREEN_HEIGHT, 255, 255, 255);
+
+        canvas.gap = 1;
+
+        int length = (int) (SCREEN_WIDTH / 50.0 * SCREEN_HEIGHT / 50.0);
+        length = SCREEN_WIDTH / 50 * SCREEN_HEIGHT / 50;
+
+        for(int i = 0; i < length; i++){
+            Tile t(50,50, "Tile" + std::to_string(i));
+            t.onClick([&stroke_strength]() mutable {
+                return stroke_strength;
+            });
+            canvas.v.push_back(move(t));
         }
+
+        main.v.push_back(move(menu));
+        main.v.push_back(move(canvas));
+
+        return main;
     }
 
-    void handleEvent(Canvas const &canvas, SDL_Event evt) {
-        for (const auto &e : canvas) {
-            handleEvent(e, evt);
-        }
-    }
 
-    SDL_Rect getPosition(Canvas const &canvas) {
-
-        SDL_Rect rect;
-        rect.x = 0;
-        rect.y = 0;
-
-        return rect;
-    }
 }
 #endif //SDL_DEMO_APPLICATION_H

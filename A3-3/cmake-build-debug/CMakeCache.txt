@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//Value Computed by CMake
+A3-3_BINARY_DIR:STATIC=/home/roberto/Documents/WS16/CPlusPlus/A3-3/cmake-build-debug
+
+//Value Computed by CMake
+A3-3_SOURCE_DIR:STATIC=/home/roberto/Documents/WS16/CPlusPlus/A3-3
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
@@ -121,7 +127,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=sdl-demo
+CMAKE_PROJECT_NAME:STATIC=A3-3
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib

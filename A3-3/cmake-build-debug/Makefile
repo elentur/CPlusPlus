@@ -111,44 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named demo
+# Target rules for targets named A3-3
 
 # Build rule for target.
-demo: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo
-.PHONY : demo
+A3-3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 A3-3
+.PHONY : A3-3
 
 # fast build rule for target.
-demo/fast:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
-.PHONY : demo/fast
-
-figther.o: figther.cpp.o
-
-.PHONY : figther.o
-
-# target to build an object file
-figther.cpp.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/figther.cpp.o
-.PHONY : figther.cpp.o
-
-figther.i: figther.cpp.i
-
-.PHONY : figther.i
-
-# target to preprocess a source file
-figther.cpp.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/figther.cpp.i
-.PHONY : figther.cpp.i
-
-figther.s: figther.cpp.s
-
-.PHONY : figther.s
-
-# target to generate assembly for a file
-figther.cpp.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/figther.cpp.s
-.PHONY : figther.cpp.s
+A3-3/fast:
+	$(MAKE) -f CMakeFiles/A3-3.dir/build.make CMakeFiles/A3-3.dir/build
+.PHONY : A3-3/fast
 
 main.o: main.cpp.o
 
@@ -156,7 +129,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/A3-3.dir/build.make CMakeFiles/A3-3.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -165,7 +138,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/A3-3.dir/build.make CMakeFiles/A3-3.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -174,7 +147,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/A3-3.dir/build.make CMakeFiles/A3-3.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -185,10 +158,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... demo"
-	@echo "... figther.o"
-	@echo "... figther.i"
-	@echo "... figther.s"
+	@echo "... A3-3"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

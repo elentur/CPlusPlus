@@ -27,7 +27,7 @@ namespace my {
             w.p_->draw_(sur);
         }
 
-        friend void handleEvent(Widget const &w, SDL_Event const &evt) {
+        friend void handleEvent(Widget const &w, SDL_Event &evt) {
             w.p_->handleEvent_(evt);
         }
 
@@ -42,7 +42,7 @@ namespace my {
 
             virtual void draw_(my::Surface const &sur) const = 0;
 
-            virtual void handleEvent_(SDL_Event const &evt) const = 0;
+            virtual void handleEvent_(SDL_Event &evt) const = 0;
 
             virtual SDL_Rect getPosition_() const = 0;
 
@@ -61,7 +61,7 @@ namespace my {
                 draw(data_,sur);
             }
 
-            void handleEvent_(SDL_Event const &evt) const override {
+            void handleEvent_(SDL_Event &evt) const override {
                 handleEvent(data_, evt);
             }
 

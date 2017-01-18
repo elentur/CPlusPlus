@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/A3-3.dir/main.cpp.o  -o A3-3 -rdynamic -lSDL2 

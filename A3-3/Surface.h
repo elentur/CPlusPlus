@@ -12,13 +12,13 @@ namespace my {
     class Surface {
 
     public:
-        Surface(const char *path);
+        Surface(const std::string path);
 
         Surface(size_t width, size_t height);
 
         ~Surface();
 
-        SDL_Rect size();
+        SDL_Rect size() const;
 
         void fill(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
@@ -29,9 +29,9 @@ namespace my {
         SDL_Surface *surface;
     };
 
-    Surface::Surface(const char *file) {
+    Surface::Surface(const std::string file) {
 
-        surface = SDL_LoadBMP(file);
+        surface = SDL_LoadBMP(file.c_str());
 
         if (surface == NULL) {
             std::cerr << "Coud not create Surface with Image path: " << SDL_GetError() << std::endl;
@@ -48,7 +48,7 @@ namespace my {
         }
     }
 
-    SDL_Rect Surface::size() {
+    SDL_Rect Surface::size() const {
         return surface->clip_rect;
     }
 
@@ -61,10 +61,16 @@ namespace my {
     }
 
     void Surface::set_pixel(int x, int y, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
-        Uint32 color = SDL_MapRGBA(surface->format, r, g, b,a);
+        /*Uint32 color = SDL_MapRGBA(surface->format, r, g, b,a);
         Uint8 *pixel = (Uint8 *) surface->pixels;
         pixel += (y * surface->pitch) + (x * sizeof(Uint64));
-        *((Uint64 *) pixel) = color;
+        *((Uint64 *) pixel) = color;*/
+
+        Uint32 color = SDL_MapRGBA(surface->format, r, g, b,a);
+        Uint8 *pixel = (Uint8 *) surface->pixels;
+        pixel += (y * surface->pitch) + (x * sizeof(Uint32));
+        *((Uint32 *) pixel) = color;
+
     }
 
     void Surface::blit(SDL_Surface *screen, SDL_Rect *offset) const {
