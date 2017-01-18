@@ -118,21 +118,47 @@ namespace my {
 
     Canvas Application::buildCanvas() {
 
+
+        // main
         Canvas main(SCREEN_WIDTH, SCREEN_HEIGHT, 100, 100, 100);
 
+        // menu
         Canvas menu(50, SCREEN_HEIGHT, 180, 180, 180);
 
+        // undo
         ImgButton undo("defaultButton", 50, 50);
+
         undo.onClick([] {
             std::cout << "Undo" << std::endl;
         });
 
         menu.v.push_back(move(undo));
 
+
+        /**
+         * Canvas
+         */
+        Canvas canvas(SCREEN_WIDTH, SCREEN_HEIGHT, 255, 255, 255);
+
+        canvas.gap = 0;
+
+        int length = (int) (SCREEN_WIDTH / 50.0 * SCREEN_HEIGHT / 50.0);
+
+        for(int i = 0; i < length; i++){
+            Tile t(50,50, "Tile" + std::to_string(i));
+            t.onClick([&stroke_strength]() mutable {
+                return stroke_strength;
+            });
+            canvas.v.push_back(move(t));
+        }
+
         ImgButton clear("defaultButton", 50, 50);
 
-        menu.v.push_back(move(clear));
+        clear.onClick([&main]() mutable{
+            clearSurface(main);
+        });
 
+        menu.v.push_back(move(clear));
 
         ImgButton plus("defaultButton", 50, 50);
 
@@ -145,7 +171,6 @@ namespace my {
 
         menu.v.push_back(move(plus));
 
-
         ImgButton minus("defaultButton", 50, 50);
 
         minus.onClick([&stroke_strength]() mutable {
@@ -154,21 +179,6 @@ namespace my {
         });
 
         menu.v.push_back(move(minus));
-
-        Canvas canvas(SCREEN_WIDTH, SCREEN_HEIGHT, 255, 255, 255);
-
-        canvas.gap = 1;
-
-        int length = (int) (SCREEN_WIDTH / 50.0 * SCREEN_HEIGHT / 50.0);
-        length = SCREEN_WIDTH / 50 * SCREEN_HEIGHT / 50;
-
-        for(int i = 0; i < length; i++){
-            Tile t(50,50, "Tile" + std::to_string(i));
-            t.onClick([&stroke_strength]() mutable {
-                return stroke_strength;
-            });
-            canvas.v.push_back(move(t));
-        }
 
         main.v.push_back(move(menu));
         main.v.push_back(move(canvas));

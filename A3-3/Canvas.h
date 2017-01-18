@@ -110,6 +110,12 @@ namespace my {
         }
     }
 
+    void clearSurface(Canvas const &canvas){
+        for (const auto &e : canvas.v) {
+            clearSurface(e);
+        }
+    }
+
     void draw(Canvas const &canvas, my::Surface const &sur) {
 
         my::Surface sur1(canvas.offset.w, canvas.offset.h);

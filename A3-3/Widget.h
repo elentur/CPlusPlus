@@ -27,6 +27,10 @@ namespace my {
             w.p_->draw_(sur);
         }
 
+        friend void clearSurface(Widget const &w) {
+            w.p_->clearSurface_();
+        }
+
         friend void handleEvent(Widget const &w, SDL_Event &evt) {
             w.p_->handleEvent_(evt);
         }
@@ -41,6 +45,8 @@ namespace my {
             virtual void setPosition_(SDL_Rect const &offset) const = 0;
 
             virtual void draw_(my::Surface const &sur) const = 0;
+
+            virtual void clearSurface_() const = 0;
 
             virtual void handleEvent_(SDL_Event &evt) const = 0;
 
@@ -59,6 +65,10 @@ namespace my {
 
             void draw_(my::Surface const &sur) const override {
                 draw(data_,sur);
+            }
+
+            void clearSurface_() const override {
+                clearSurface(data_);
             }
 
             void handleEvent_(SDL_Event &evt) const override {

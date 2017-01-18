@@ -108,20 +108,13 @@ namespace my {
                     int realX = x - tile.offset.x - strength / 2;
                     int realY = y - tile.offset.y - strength / 2;
 
-                    std::cout << x << ":xy " << y << std::endl;
-                    std::cout << tile.offset.x << ":o " << tile.offset.y << std::endl;
-                    std::cout << realX << ":r " << realY << std::endl;
-                    std::cout << tile.name << std::endl;
-
-                    /*realX = 25;
-                    realY = 43 + 5;*/
-
                     for (int i = 0; i < strength; i++) {
                         for (int j = 0; j < strength; j++) {
-                            //if(isInside(tile, realX + j, realY + i))
-                            {
-                                tile.surface->set_pixel(realX + j, realY + i, 255, 0, 0, 255);
-                            }
+
+                            int xi = (realX + i <= 0) ? 0 : (realX + i >= tile.offset.w - 1) ? tile.offset.w -1: realX + i;
+                            int yj = (realY + j <= 0) ? 0 : (realY + j >= tile.offset.h - 1) ? tile.offset.h -1: realY + j;
+                            tile.surface->set_pixel(xi, yj, 255, 0, 0, 255);
+
                         }
                     }
                 }
@@ -132,14 +125,14 @@ namespace my {
     bool isInside(const Tile &tile, int x, int y) {
         bool inside = true;
         if (x < tile.offset.x) {
-                inside = false;
-            } else if (x > tile.offset.x + tile.offset.w) {
-                inside = false;
-            } else if (y < tile.offset.y) {
-                inside = false;
-            } else if (y > tile.offset.y + tile.offset.h) {
-                inside = false;
-            }
+            inside = false;
+        } else if (x > tile.offset.x + tile.offset.w) {
+            inside = false;
+        } else if (y < tile.offset.y) {
+            inside = false;
+        } else if (y > tile.offset.y + tile.offset.h) {
+            inside = false;
+        }
         return inside;
     }
 
@@ -149,6 +142,10 @@ namespace my {
 
     SDL_Rect getPosition(Tile const &tile) {
         return tile.offset;
+    }
+
+    void clearSurface(Tile const &tile){
+        tile.surface->fill(0,0,0,0);
     }
 }
 

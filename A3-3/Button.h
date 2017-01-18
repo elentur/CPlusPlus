@@ -9,6 +9,8 @@
 #include <iostream>
 #include <SDL2/SDL_quit.h>
 #include <vector>
+#include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_events.h>
 #include "Surface.h"
 
 namespace my {
@@ -118,6 +120,10 @@ namespace my {
 
     SDL_Rect getPosition(Button const &button){
         return button.offset;
+    }
+
+    void clearSurface(Button const &button){
+        //tile.surface->fill(0,0,0,0);
     }
 }
 

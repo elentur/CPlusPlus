@@ -129,6 +129,10 @@ namespace my {
     SDL_Rect getPosition(ImgButton const &button){
         return button.offset;
     }
+
+    void clearSurface(ImgButton const &button){
+        //button.surface->fill(0,0,0,0);
+    }
 }
 
 
