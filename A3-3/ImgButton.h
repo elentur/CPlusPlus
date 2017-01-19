@@ -33,7 +33,7 @@ namespace my {
         std::vector<Uint8> colorOver = {100, 100, 100};
         std::vector<Uint8> colorClick = {255, 0, 0};
 
-        mutable char * _suffix = (char *) "_normal.bmp";
+        mutable char * _suffix = (char *) "_Normal.bmp";
 
         std::function<void()> callBack =[]{};
 
@@ -43,7 +43,7 @@ namespace my {
 
     };
 
-    ImgButton::ImgButton(string path, size_t width, size_t heigth) : surNormal(new my::Surface(path +  "_normal.bmp")), surHover(new my::Surface(path +  "_hover.bmp")), surClicked(new my::Surface(path +  "_clicked.bmp")) , surCurrent(surNormal) {
+    ImgButton::ImgButton(string path, size_t width, size_t heigth) : surNormal(new my::Surface(path +  "_Normal.bmp")), surHover(new my::Surface(path +  "_Hover.bmp")), surClicked(new my::Surface(path +  "_Clicked.bmp")) , surCurrent(surNormal) {
         offset.w = width;
         offset.h = heigth;
     }

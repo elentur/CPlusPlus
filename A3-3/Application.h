@@ -33,7 +33,11 @@ namespace my {
 
     void undo(history_t &x) { assert(x.v.size()); x.v.pop_back(); }
 
-    vector<my::Widget> &current(history_t &x) { assert(x.v.size()); return x.v.back(); }
+    Canvas &current(history_t &x) {
+        std::cout << x.v.size() << std::endl;
+        //assert(x.v.size());
+        return  x;
+    }
 
     // -----------------------------------------------------------------------------------
 
@@ -69,7 +73,7 @@ namespace my {
         Canvas buildCanvas();
     };
 
-    Application::Application() : h(1) {
+    Application::Application() : h(SCREEN_WIDTH, SCREEN_HEIGHT, 100, 100, 100) {
         try {
             SDL_Init(SDL_INIT_EVERYTHING);
         }
@@ -84,7 +88,7 @@ namespace my {
 
     void Application::run() {
 
-        current(h).v.emplace_back(buildCanvas());
+        Canvas canvas = buildCanvas();
 
         my::Window win("Mein Window", SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -94,7 +98,7 @@ namespace my {
         rect.x = 0;
         rect.y = 0;
 
-        makeRaster(current(h), current(h).gap, SCREEN_WIDTH, rect);
+        makeRaster(canvas, canvas.gap, SCREEN_WIDTH, rect);
 
         my::Surface sur(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -102,7 +106,7 @@ namespace my {
 
             sur.fill(255, 255, 255, 255);
 
-            draw(current(h), sur);
+            draw(canvas, sur);
 
             win.draw(sur);
 
@@ -131,7 +135,7 @@ namespace my {
                     Running = false;
                     break;
                 default:
-                    handleEvent(current(h), Event);
+                    handleEvent(canvas, Event);
                     break;
             }
         }
@@ -146,11 +150,11 @@ namespace my {
         Canvas menu(50, SCREEN_HEIGHT, 180, 180, 180);
 
         // undo
-        ImgButton undoBtn("defaultButton", 50, 50);
+        ImgButton undoBtn("Undo", 50, 50);
 
         undoBtn.onClick([=]() mutable{
             std::cout << "Undo" << std::endl;
-            //undo(h);
+            undo(h);
         });
 
         menu.v.push_back(move(undoBtn));
@@ -164,6 +168,7 @@ namespace my {
 
         for (int i = 0; i < length; i++) {
             Tile t(50, 50, "Tile" + std::to_string(i));
+            current(h).v.emplace_back(t);
             t.onClick([&stroke_strength]() mutable {
                 return stroke_strength;
             });
@@ -172,7 +177,9 @@ namespace my {
             canvas.v.push_back(move(t));
         }
 
-        ImgButton clear("defaultButton", 50, 50);
+        commit(h);
+
+        ImgButton clear("Clear", 50, 50);
 
         clear.onClick([&main]() mutable {
             clearSurface(main);
@@ -180,7 +187,7 @@ namespace my {
 
         menu.v.push_back(move(clear));
 
-        ImgButton plus("defaultButton", 50, 50);
+        ImgButton plus("Plus", 50, 50);
 
         int a = 0;
 
@@ -191,7 +198,7 @@ namespace my {
 
         menu.v.push_back(move(plus));
 
-        ImgButton minus("defaultButton", 50, 50);
+        ImgButton minus("Minus", 50, 50);
 
         minus.onClick([&stroke_strength]() mutable {
             if (stroke_strength > 1) stroke_strength--;

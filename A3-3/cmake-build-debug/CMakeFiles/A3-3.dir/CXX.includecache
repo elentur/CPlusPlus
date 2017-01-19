@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Application.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Application.h
 SDL2/SDL.h
 -
 stdlib.h
@@ -18,15 +18,15 @@ list
 vector
 -
 Window.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Window.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Window.h
 Widget.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Widget.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Widget.h
 ImgButton.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/ImgButton.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/ImgButton.h
 Canvas.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Canvas.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Canvas.h
 Tile.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Tile.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Tile.h
 memory
 -
 iostream
@@ -36,7 +36,7 @@ vector
 cassert
 -
 
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Canvas.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Canvas.h
 glob.h
 -
 iostream
@@ -50,11 +50,11 @@ SDL2/SDL_rect.h
 SDL2/SDL_events.h
 -
 Surface.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Surface.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Surface.h
 Widget.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Widget.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Widget.h
 
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/ImgButton.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/ImgButton.h
 glob.h
 -
 iostream
@@ -64,13 +64,13 @@ SDL2/SDL_quit.h
 vector
 -
 Surface.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Surface.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Surface.h
 
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Surface.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Surface.h
 stdlib.h
 -
 
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Tile.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Tile.h
 glob.h
 -
 iostream
@@ -86,21 +86,21 @@ functional
 SDL2/SDL_events.h
 -
 Surface.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Surface.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Surface.h
 Application.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Application.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Application.h
 string
 -
 
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Widget.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Widget.h
 Surface.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Surface.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Surface.h
 Window.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Window.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Window.h
 memory
 -
 
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Window.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Window.h
 iostream
 -
 SDL2/SDL_video.h
@@ -108,11 +108,11 @@ SDL2/SDL_video.h
 stdlib.h
 -
 Surface.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Surface.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Surface.h
 
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/main.cpp
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/main.cpp
 SDL2/SDL.h
 -
 Application.h
-/home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Application.h
+/home/roberto/Documents/WS16/CPlusPlus/A3-3/Application.h
 
