@@ -27,6 +27,14 @@ Canvas.h
 /home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Canvas.h
 Tile.h
 /home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Tile.h
+memory
+-
+iostream
+-
+vector
+-
+cassert
+-
 
 /home/roberto/Documents/beuth/WS16/CPlusPlus/A3-3/Canvas.h
 glob.h

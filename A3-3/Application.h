@@ -15,8 +15,27 @@
 #include "ImgButton.h"
 #include "Canvas.h"
 #include "Tile.h"
+#include <memory>
+#include <iostream>
+#include <vector>
+#include <cassert>
 
 namespace my {
+
+
+    // -----------------------------------------------------------------------------------
+    // UNDO SYSTEM
+    // -----------------------------------------------------------------------------------
+
+    using history_t = Canvas;
+
+    void commit(history_t &x) { assert(x.v.size()); x.v.push_back(move(x.v.back())); }
+
+    void undo(history_t &x) { assert(x.v.size()); x.v.pop_back(); }
+
+    vector<my::Widget> &current(history_t &x) { assert(x.v.size()); return x.v.back(); }
+
+    // -----------------------------------------------------------------------------------
 
     void showOffset(SDL_Rect &offset) {
         std::cout << offset.x << ":" << offset.y << ":" << offset.w << ":" << offset.h << std::endl;
@@ -33,6 +52,7 @@ namespace my {
 
     int stroke_strength = 10;
 
+
     class Application {
     public:
         Application();
@@ -45,11 +65,11 @@ namespace my {
 
     private:
         bool Running = true;
-
+        history_t h;
         Canvas buildCanvas();
     };
 
-    Application::Application() {
+    Application::Application() : h(1) {
         try {
             SDL_Init(SDL_INIT_EVERYTHING);
         }
@@ -57,13 +77,14 @@ namespace my {
         catch (std::runtime_error const &e) {
             std::cerr << "Caught exception on initializing Application: " << e.what() << std::endl;
         }
+
     }
 
     Application::~Application() { SDL_Quit(); }
 
     void Application::run() {
 
-        Canvas canvas = buildCanvas();
+        current(h).v.emplace_back(buildCanvas());
 
         my::Window win("Mein Window", SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -73,7 +94,7 @@ namespace my {
         rect.x = 0;
         rect.y = 0;
 
-        makeRaster(canvas, canvas.gap, SCREEN_WIDTH, rect);
+        makeRaster(current(h), current(h).gap, SCREEN_WIDTH, rect);
 
         my::Surface sur(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -81,7 +102,7 @@ namespace my {
 
             sur.fill(255, 255, 255, 255);
 
-            draw(canvas, sur);
+            draw(current(h), sur);
 
             win.draw(sur);
 
@@ -110,14 +131,13 @@ namespace my {
                     Running = false;
                     break;
                 default:
-                    handleEvent(canvas, Event);
+                    handleEvent(current(h), Event);
                     break;
             }
         }
     }
 
     Canvas Application::buildCanvas() {
-
 
         // main
         Canvas main(SCREEN_WIDTH, SCREEN_HEIGHT, 100, 100, 100);
@@ -126,35 +146,35 @@ namespace my {
         Canvas menu(50, SCREEN_HEIGHT, 180, 180, 180);
 
         // undo
-        ImgButton undo("defaultButton", 50, 50);
+        ImgButton undoBtn("defaultButton", 50, 50);
 
-        undo.onClick([] {
+        undoBtn.onClick([=]() mutable{
             std::cout << "Undo" << std::endl;
+            //undo(h);
         });
 
-        menu.v.push_back(move(undo));
+        menu.v.push_back(move(undoBtn));
 
-
-        /**
-         * Canvas
-         */
+        // canvas
         Canvas canvas(SCREEN_WIDTH, SCREEN_HEIGHT, 255, 255, 255);
 
         canvas.gap = 0;
 
         int length = (int) (SCREEN_WIDTH / 50.0 * SCREEN_HEIGHT / 50.0);
 
-        for(int i = 0; i < length; i++){
-            Tile t(50,50, "Tile" + std::to_string(i));
+        for (int i = 0; i < length; i++) {
+            Tile t(50, 50, "Tile" + std::to_string(i));
             t.onClick([&stroke_strength]() mutable {
                 return stroke_strength;
             });
+
+
             canvas.v.push_back(move(t));
         }
 
         ImgButton clear("defaultButton", 50, 50);
 
-        clear.onClick([&main]() mutable{
+        clear.onClick([&main]() mutable {
             clearSurface(main);
         });
 
@@ -165,7 +185,7 @@ namespace my {
         int a = 0;
 
         plus.onClick([&stroke_strength]() mutable {
-            if(stroke_strength < 20) stroke_strength++;
+            if (stroke_strength < 20) stroke_strength++;
             std::cout << stroke_strength << std::endl;
         });
 
@@ -174,7 +194,7 @@ namespace my {
         ImgButton minus("defaultButton", 50, 50);
 
         minus.onClick([&stroke_strength]() mutable {
-            if(stroke_strength > 1) stroke_strength--;
+            if (stroke_strength > 1) stroke_strength--;
             std::cout << stroke_strength << std::endl;
         });
 
